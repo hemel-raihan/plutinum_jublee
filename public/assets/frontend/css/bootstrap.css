@@ -663,7 +663,8 @@ progress {
     max-width: 80%;
   }
   .container-sm{
-    max-width: 75%;
+    /* max-width: 75%; */
+    max-width: 65%;
   }
   .container-lg{
     max-width: 100%;

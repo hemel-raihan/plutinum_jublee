@@ -16,7 +16,7 @@
 
                                 <!-- Logo
                                 ============================================= -->
-                                @php
+                                {{-- @php
                                     $logo  = \App\Models\Admin\Setting::where([['id',1]])->orderBy('id','desc')->first();
                                 @endphp
                                 @isset($logo)
@@ -25,7 +25,7 @@
                                     <a href="{{route('home')}}" class="standard-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                                     <a href="{{route('home')}}" class="retina-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                                 </div><!-- #logo end -->
-                                @endisset
+                                @endisset --}}
                                 {{-- <div class="header-row" style="background-image: url({{asset('assets/frontend/images/banner.jpg')}}); background-repeat: no-repeat; background-position: center center;">
                                     <div class="header-misc mb-4 mb-lg-0 d-none d-lg-flex">
 
@@ -67,12 +67,12 @@
                                             @if($menuitem->childs->isEmpty())
                                             @if ($menuitem->slug != null)
                                             <li class="menu-item">
-                                                <a class="menu-link" style="color: {{$navbar->text_color}}" href="{{route('page',$menuitem->slug)}}"><div>{{$menuitem->title}}</div></a>
+                                                <a class="menu-link" style="color: {{$navbar->text_color}}; padding-top: 9px; padding-bottom: 9px;" href="{{route('page',$menuitem->slug)}}"><div>{{$menuitem->title}}</div></a>
                                             </li>
 
                                             @else
                                             <li class="menu-item">
-                                                <a class="menu-link" style="color: {{$navbar->text_color}}" href="{{$menuitem->url}}"><div>{{$menuitem->title}}</div></a>
+                                                <a class="menu-link" style="color: {{$navbar->text_color}}; padding-top: 9px; padding-bottom: 9px;" href="{{$menuitem->url}}"><div>{{$menuitem->title}}</div></a>
                                             </li>
                                             @endif
                                             @else
@@ -138,7 +138,7 @@
 
                             </div>
                         </div>
-                        <div class="header-wrap-clone"></div>
+                        {{-- <div class="header-wrap-clone"></div> --}}
                     </header><!-- #header end -->
                 </div>
                 </div>
@@ -151,7 +151,7 @@
                     <div style="margin-left: {{$navbar->left_margin}}; margin-right: {{$navbar->right_margin}};" class=" header-row flex-column flex-lg-row justify-content-center justify-content-lg-start">
 
                         <!-- Logo
-                        ============================================= -->
+                        {{-- ============================================= -->
                         @php
                             $logo  = \App\Models\Admin\Setting::where([['id',1]])->orderBy('id','desc')->first();
                         @endphp
@@ -161,7 +161,7 @@
                             <a href="{{route('home')}}" class="standard-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                             <a href="{{route('home')}}" class="retina-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                         </div><!-- #logo end -->
-                        @endisset
+                        @endisset --}}
                         {{-- <div class="header-row" style="background-image: url({{asset('assets/frontend/images/banner.jpg')}}); background-repeat: no-repeat; background-position: center center;">
                             <div class="header-misc mb-4 mb-lg-0 d-none d-lg-flex">
 
@@ -202,11 +202,11 @@
                                     @if($menuitem->childs->isEmpty())
                                     @if ($menuitem->slug != null)
                                     <li class="menu-item">
-                                        <a class="menu-link" style="color: {{$navbar->text_color}}" href="{{route('page',$menuitem->slug)}}"><div>{{$menuitem->title}}</div></a>
+                                        <a class="menu-link" style="color: {{$navbar->text_color}}; padding-top: 9px; padding-bottom: 9px;" href="{{route('page',$menuitem->slug)}}"><div>{{$menuitem->title}}</div></a>
                                     </li>
                                     @else
                                     <li class="menu-item">
-                                        <a class="menu-link" style="color: {{$navbar->text_color}}" href="{{$menuitem->url}}"><div>{{$menuitem->title}}</div></a>
+                                        <a class="menu-link" style="color: {{$navbar->text_color}}; padding-top: 9px; padding-bottom: 9px;" href="{{$menuitem->url}}"><div>{{$menuitem->title}}</div></a>
                                     </li>
                                     @endif
                                     @else
@@ -271,7 +271,7 @@
 
                     </div>
                 </div>
-                <div class="header-wrap-clone"></div>
+                {{-- <div class="header-wrap-clone"></div> --}}
             </header><!-- #header end -->
 
             @endif
@@ -290,7 +290,7 @@
 
                                     <!-- Logo
                                     ============================================= -->
-                                    @php
+                                    {{-- @php
                                     $logo  = \App\Models\Admin\Setting::where([['id',1]])->orderBy('id','desc')->first();
                                     @endphp
                                     @isset($logo)
@@ -298,7 +298,7 @@
                                         <a href="{{route('home')}}" class="standard-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img  src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                                         <a href="{{route('home')}}" class="retina-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                                     </div><!-- #logo end -->
-                                    @endisset
+                                    @endisset --}}
 
                                     {{-- <div class="header-misc">
 
@@ -366,11 +366,11 @@
                                             @if($menuitem->childs->isEmpty())
                                             @if ($menuitem->slug != null)
                                             <li class="menu-item">
-                                                <a class="menu-link" style="color: {{$navbar->text_color}}" href="{{route('page',$menuitem->slug)}}"><div>{{$menuitem->title}}</div></a>
+                                                <a class="menu-link" style="color: {{$navbar->text_color}}; padding-top: 9px; padding-bottom: 9px;" href="{{route('page',$menuitem->slug)}}"><div>{{$menuitem->title}}</div></a>
                                             </li>
                                             @else
                                             <li class="menu-item">
-                                                <a class="menu-link" style="color: {{$navbar->text_color}}" href="{{$menuitem->url}}"><div>{{$menuitem->title}}</div></a>
+                                                <a class="menu-link" style="color: {{$navbar->text_color}}; padding-top: 9px; padding-bottom: 9px;" href="{{$menuitem->url}}"><div>{{$menuitem->title}}</div></a>
                                             </li>
                                             @endif
                                             @else
@@ -446,7 +446,7 @@
 
                             <!-- Logo
                             ============================================= -->
-                            @php
+                            {{-- @php
                             $logo  = \App\Models\Admin\Setting::where([['id',1]])->orderBy('id','desc')->first();
                             @endphp
                             @isset($logo)
@@ -454,7 +454,7 @@
                                 <a href="{{route('home')}}" class="standard-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img  src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                                 <a href="{{route('home')}}" class="retina-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                             </div><!-- #logo end -->
-                            @endisset
+                            @endisset --}}
 
                             {{-- <div class="header-misc">
 
@@ -523,11 +523,11 @@
                                     @if($menuitem->childs->isEmpty())
                                     @if ($menuitem->slug != null)
                                     <li class="menu-item">
-                                        <a class="menu-link" style="color: {{$navbar->text_color}}" href="{{route('page',$menuitem->slug)}}"><div>{{$menuitem->title}}</div></a>
+                                        <a class="menu-link" style="color: {{$navbar->text_color}}; padding-top: 9px; padding-bottom: 9px;" href="{{route('page',$menuitem->slug)}}"><div>{{$menuitem->title}}</div></a>
                                     </li>
                                     @else
                                     <li class="menu-item">
-                                        <a class="menu-link" style="color: {{$navbar->text_color}}" href="{{$menuitem->url}}"><div>{{$menuitem->title}}</div></a>
+                                        <a class="menu-link" style="color: {{$navbar->text_color}}; padding-top: 9px; padding-bottom: 9px;" href="{{$menuitem->url}}"><div>{{$menuitem->title}}</div></a>
                                     </li>
                                     @endif
                                     @else

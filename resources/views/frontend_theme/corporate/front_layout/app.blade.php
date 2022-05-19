@@ -27,7 +27,7 @@
 
 <body class="stretched">
 
-    
+
 
 	<!-- Document Wrapper
 	============================================= -->
@@ -60,18 +60,12 @@
 
         {{-- ........header end........ --}}
 
-        <!-- Slider start
-		============================================= -->
-        {{-- @if (!Request::is('default*') && !Request::is('blog/details*')  && !Request::is('gallery/all*'))
+
+        {{-- @if (Route::current()->getName() == 'home')
+
         @include('frontend_theme.corporate.front_layout.vertical.slider')
+
         @endif --}}
-        {{-- @if (!Request::is('default*') && !Request::is('blog/details*') && !Request::is('service/details*')  && !Request::is('gallery/all*')) --}}
-
-        @if (Route::current()->getName() == 'home')
-
-        @include('frontend_theme.corporate.front_layout.vertical.slider')
-
-        @endif
 
         <!-- Slider end
 		============================================= -->

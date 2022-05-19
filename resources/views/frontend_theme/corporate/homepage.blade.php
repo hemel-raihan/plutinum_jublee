@@ -7,6 +7,98 @@
 
 @section('content')
 
+@php
+    $slider = \App\Models\Admin\Slide\Slider::where('status','=',true)->first();
+    $posts = \App\Models\blog\post::where('status','=',true)->take(8)->get();
+    $sidebars = \App\Models\Admin\Sidebar::where([['type','=','Left Side Bar']])->get();
+    foreach($sidebars as $sidebar)
+    {
+        $widgets = $sidebar->widgets()->get();
+    }
+@endphp
+
+<div class="row">
+    <div class="col-3" style="margin-top: 40px; background: #69F;">
+        <div class="sidebar">
+            @foreach ($widgets as $widget)
+            <div class="sidebar-widgets-wrap">
+                <h4 style="background: #A00000; color: #fff; padding: 5px;">
+                    Digital Content
+                </h4>
+                <p style="background: #fff;"><img alt="" src="{{asset('uploads/sidebarphoto/'.$widget->image)}}" style="height: 214px; width: 350px;" /></p>
+
+
+                    <h4>
+                        {{-- <a href="{{route('widget.details',$widget->id)}}"> --}}
+                            <a href="#">
+                            <u><span style="color: #008000;">বিস্তারিত</span></u>
+                        </a>
+                    </h4>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="col-6">
+        @isset($slider)
+        <section id="slider" class="slider-element boxed-slider">
+            <div class="container clearfix">
+                <div class="fslider" data-animation="fade">
+                    <div class="flexslider">
+                        <div class="slider-wrap">
+                            @foreach ($slider->slides as $mainslide)
+                            <div class="slide" data-thumb="{{asset('uploads/slide_image/'.$mainslide->slideimage)}}">
+                                <a href="#" class="d-block position-relative">
+                                    <img src="{{asset('uploads/slide_image/'.$mainslide->slideimage)}}" alt="Slide 2">
+                                    {{-- <div class="bg-overlay">
+                                        <div class="bg-overlay-content justify-content-start align-items-end">
+                                            <div class="h3 fw-light py-2 px-3 bg-light text-dark ms-3 mb-3 rounded">Responsive Ready Design</div>
+                                        </div>
+                                    </div> --}}
+                                </a>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @endisset
+    </div>
+    <div class="col-3" style="margin-top: 40px;">
+        <div class="sidebar">
+            <div class="sidebar-widgets-wrap">
+                <h4 style="background: #A00000; color: #fff; padding: 5px;">
+                    Recent Events
+                </h4>
+                 @foreach ($posts as $post)
+                <div class="posts-sm row col-mb-30" id="post-list-sidebar">
+                    <div class="entry col-12">
+                        <div class="grid-inner row g-0">
+                            <div class="col-auto">
+                                <div class="entry-image">
+                                    <a href="#"><img src="{{asset('uploads/postphoto/'.$post->image)}}" alt="Image"></a>
+                                </div>
+                            </div>
+                            <div class="col ps-3">
+                                <div class="entry-title">
+                                    <h4><a href="#">{{$post->title}}</a></h4>
+                                </div>
+                                <div class="entry-meta">
+                                    <ul>
+                                        <li>{{ \Carbon\Carbon::parse($post->created_at)->isoFormat('Do MMM YYYY')}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
         @if ($page->rightsidebar_id == 0 && $page->leftsidebar_id == 0)
         <div class="postcontent col-lg-12">
@@ -17,6 +109,7 @@
         @elseif(!$page->rightsidebar_id == 0 && !$page->leftsidebar_id == 0)
         <div class="postcontent col-lg-6">
         @endif
+
 
         @foreach ($page->pagebuilders()->with('elements')->get() as $pagebuilder)
         @if ($pagebuilder->status == 1)
