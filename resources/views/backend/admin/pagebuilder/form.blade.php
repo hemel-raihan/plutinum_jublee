@@ -197,7 +197,7 @@
                     @isset($custompage)
                     <div class="form-group">
 						<label class="form-label">Container</label>
-						<select name="container" class="form-control form-select select2" data-bs-placeholder="Select Container">
+						<select name="container" class="form-control form-select select2" data-bs-placeholder="Select Container" onChange="setContainer()">
 							<option value="">Select Container Type</option>
 							<option value="container-lg" {{($custompage->container == 'container-lg') ? 'selected' : ''}}  >Full width</option>
 							<option value="container-sm" {{($custompage->container == 'container-sm') ? 'selected' : ''}}>Box Layout</option>
@@ -208,13 +208,18 @@
 
 					<div class="form-group">
 						<label class="form-label">Container</label>
-						<select name="container" class="form-control form-select select2" data-bs-placeholder="Select Container">
+						<select name="container" class="form-control form-select select2" data-bs-placeholder="Select Container" onChange="setContainer()">
 							<option value="">Select Page Type</option>
 							<option value="container-lg">Full width</option>
 							<option value="container-sm">Box Layout</option>
 						</select>
 					</div>
                     @endisset
+
+                    <div class="form-group" style="display:none" id="container_color">
+						<label for="exampleInputname">Container Background Color Code</label>
+						<input type="text" class="form-control" value="{{$custompage->container_color ?? old('container_color')}}" name="container_color" id="" placeholder="ex. #ffffff">
+					</div>
 
 				</div>
 
@@ -389,6 +394,20 @@
             $("div.background_img").show();
         });
     });
+
+    function setContainer()
+	{
+		if($('select[name="container"]').val() === 'container-sm')
+		{
+			$('#container_color').show();
+		}
+        else
+        {
+            $('#container_color').hide();
+        }
+    }
+    setContainer();
+
 </script>
 
 

@@ -16,11 +16,11 @@
 
 
                     <div class="center mb-5">
-                        <h1 class="fw-bold display-4">Contact Us..</h1>
+                        <h1 class="fw-bold display-4">Primary Information Form</h1>
                     </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <form id="coming-soon-registration" class="mb-0" action="{{route('contact.store')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-process"></div>
@@ -38,8 +38,9 @@
                                             <input type="tel" name="phone" id="landing-enquiry-phone" class="form-control form-control-lg required" value="" placeholder="123-45-678" maxlength="12">
                                         </div>
                                         <div class="col-12 form-group">
-                                            <label>Message</label>
-                                            <textarea name="msg" id="landing-enquiry-phone" class="form-control form-control-lg required" value="" placeholder="Write your message" ></textarea>
+                                            <label>SSC Passing Year</label>
+                                            <input type="text" name="msg" id="landing-enquiry-name" class="form-control form-control-lg required" value="" placeholder="Write your passsing year">
+                                            <!--<textarea name="msg" id="landing-enquiry-phone" class="form-control form-control-lg required" value="" placeholder="Write your message" ></textarea>-->
                                         </div>
                                         <div class="col-12 d-none">
                                             <input type="text" id="landing-enquiry-botcheck" name="landing-enquiry-botcheck" value="" />
@@ -54,9 +55,9 @@
                                 </br>
                                 </form>
                             </div>
-                            <div class="col-md-6">
-                                <iframe src="{{$setting->map}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                            </div>
+                            <!--<div class="col-md-6">-->
+                            <!--    <iframe src="{{$setting->map}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>

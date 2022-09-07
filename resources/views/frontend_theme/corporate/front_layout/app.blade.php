@@ -27,11 +27,14 @@
 
 <body class="stretched">
 
+@php
+    $page = \App\Models\Pagebuilder\Custompage::where([['type','=','main-page'],['status','=',true]])->orderBy('id','desc')->first();
+@endphp
 
 
 	<!-- Document Wrapper
 	============================================= -->
-	<div id="wrapper" class="clearfix" >
+	<div id="wrapper" style="background-image: url('{{asset('uploads/custompagephoto/'.$page->background_img)}}'); background: {{$page->background_color}};" class="clearfix" >
 
 
         <!-- Header
@@ -76,17 +79,15 @@
 		============================================= -->
 		<section id="content">
 			<div class="content-wrap">
-                @php
-                    $page = \App\Models\Pagebuilder\Custompage::where([['type','=','main-page'],['status','=',true]])->orderBy('id','desc')->first();
-                @endphp
+
                 {{-- <div class="container-lg" style="background: #19a1dd;">
                     <div class="container-md" style="background: #f9fdff;"> --}}
                         {{-- <div class="body"> --}}
                             {{-- <div class="{{($page->container == 'container-sm') ? 'container-sm' : '' }}">
                                 <div class="main-div"> --}}
-                                    <section id="content" style="background-image: url('{{asset('uploads/custompagephoto/'.$page->background_img)}}'); background: {{$page->background_color}}; margin-left: {{$page->left_margin}}; margin-right: {{$page->right_margin}};">
+                                    <section id="content" style=" margin-left: {{$page->left_margin}}; margin-right: {{$page->right_margin}};">
                                         <div class="content-wrap">
-                                           <div class="{{($page->container == 'container-sm') ? 'container-sm' : 'container-lg' }} clearfix">
+                                           <div style="background: {{$page->container_color}};" class="{{($page->container == 'container-sm') ? 'container-sm' : 'container-lg' }} clearfix">
                                                 <div class="row">
                                                     @if(!$page->leftsidebar_id == 0)
                                                     @php

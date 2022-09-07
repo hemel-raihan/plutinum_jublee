@@ -8,10 +8,10 @@
 
 
                     @if ($slider->container == 'container-sm')
-                    <div class="container-sm">
+                    <div class="container-sm" style="background: {{$page->container_color}};">
                         <div class="main-div">
 
-                    <section id="slider" class=" slider-element swiper_wrapper min-vh-{{$slider->width}} min-vh-md-{{$slider->height}}">
+                    <section id="slider" class=" slider-element swiper_wrapper min-vh-{{$slider->width}} min-vh-md-{{$slider->height}}" data-autoplay="7000" data-speed="650" data-loop="true">
                         <div class="slider-inner">
 
                             <div class="swiper-container swiper-parent">

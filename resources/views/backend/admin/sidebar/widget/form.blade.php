@@ -249,6 +249,12 @@
                         <div class="card-body">
                             <input type="file" class="dropify form-control" data-default-file="{{ isset($widget) ? asset('uploads/sidebarphoto/'.$widget->image) : '' }}" name="image">
                         </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputname">URl</label>
+                            <input type="text" class="form-control " value="{{$widget->url ?? old('url')}}" name="url" id="" placeholder="Give url here">
+                        </div>
+
                     </div>
 
 				</div>

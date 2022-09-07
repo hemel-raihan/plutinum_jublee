@@ -131,7 +131,7 @@
 }
 
 .menu-builder .dd {
-  margin-left: 40%;
+  margin-left: 20%;
 }
 
 .menu-builder .dd .item_actions {
@@ -147,7 +147,7 @@
 
 .menu-builder .dd-handle {
   display: block;
-  height: 50px;
+  height: 60px;
   margin: 5px 0;
   padding: 14px 25px;
   color: #333;

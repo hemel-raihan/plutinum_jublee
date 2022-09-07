@@ -28,6 +28,13 @@
 							<a class="side-menu__item" href="{{ url('widgets') }}"><i class="side-menu__icon fe fe-grid"></i><span class="side-menu__label">Widgets</span></a>
 						</li> -->
 
+                        <li class="slide">
+							<a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon fe fe-layers"></i><span class="side-menu__label">Registration</span><i class="angle fa fa-angle-right"></i></a>
+							<ul class="slide-menu">
+								<li><a href="{{route('admin.member.registration')}}" class="slide-item">Registration Lists</a></li>
+							</ul>
+						</li>
+
                         @if ($auth->hasPermission('app.custom.pages.global'))
                         <li class="slide">
 							<a class="side-menu__item" data-bs-toggle="slide" href="#"><i class="side-menu__icon fe fe-layers"></i><span class="side-menu__label">Page Builder</span><i class="angle fa fa-angle-right"></i></a>

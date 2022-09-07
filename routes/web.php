@@ -100,6 +100,16 @@ Route::get('default/price-plan/{slug}', 'Corporate\HomepageController@all_price'
 
 Route::post('subscribe', 'SubscriberController@store')->name('subscriber.store');
 
+Route::get('members-registration', 'MemberRegController@index')->name('member.registration');
+Route::get('members-name/{year}', 'MemberRegController@getName')->name('member.name');
+
+Route::post('members-registration', 'MemberRegController@registration')->name('member.registration');
+
+//Route::get('/shurjo-payment', 'App\Http\Controllers\PaymentGatewayController@index')->route('shurjo.payment');
+
+Route::post('payment-gateway','PaymentGatewayController@initiatePayment');
+Route::get('success-url','PaymentGatewayController@verifyPayment');
+
 //for admin authentication
 Route::get('adminlogin', 'Adminlogin\LoginController@showloginform')->name('admin.login')->middleware('installcheck');
  Route::post('adminlogin', 'Adminlogin\LoginController@login')->name('admin.loginform');
@@ -281,6 +291,9 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'Admin', 'middlewar
     Route::resource('orders','Pricing_Table\OrderController');
     Route::get('/all_orders/{id}/show', 'Pricing_Table\OrderController@all_orders_show')->name('all_orders.show');
     Route::post('/orders/update_delivery_status', 'Pricing_Table\OrderController@update_delivery_status')->name('orders.update_delivery_status');
+
+    Route::get('registration-lists','RegistrationController@index')->name('member.registration');
+    Route::get('registration-invitations/{id}','RegistrationController@invitations')->name('member.invitations');
 });
 
 

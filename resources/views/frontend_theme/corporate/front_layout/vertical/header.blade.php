@@ -7,16 +7,33 @@
 
         @if ($navbar->navbar_style == 'default')
                 @if ($navbar->container == 'container-sm')
-                <div class="container-sm">
+                <div class="container-sm" style="background: {{$page->container_color}};">
                 <div class="main-div">
                     <header id="header" style="background: {{$navbar->background_color}};"  class=" header-size-sm" data-sticky-shrink="false">
                         @include('frontend_theme.corporate.front_layout.vertical.topbar')
                         {{-- <div class="" > --}}
                             <div style="margin-left: {{$navbar->left_margin}}; margin-right: {{$navbar->right_margin}};" class=" header-row flex-column flex-lg-row justify-content-center justify-content-lg-start">
 
+                                {{-- @php
+                                $mytime = Carbon\Carbon::now();
+                                $today = date("Y/m/d");
+                                $to_day=date("d-F-Y",strtotime($today));
+                                @endphp
+                                 <div id="logo">
+                                    <p style="background: black; color: white; padding: 5px; margin-bottom: 0px; border-radius: 5%;">{{$to_day}}</p>
+                                    <div class="tick_clock" style="background: black; color: white; padding: 5px; margin-left: 5px; border-radius: 5%;">
+                                        <span id="hours">00</span>
+                                        <span>:</span>
+                                        <span id="minutes">00</span>
+                                        <span>:</span>
+                                        <span id="seconds">00</span>
+                                        <span id="session">AM</span>
+                                    </div>
+                                 </div> --}}
+
                                 <!-- Logo
                                 ============================================= -->
-                                {{-- @php
+                                @php
                                     $logo  = \App\Models\Admin\Setting::where([['id',1]])->orderBy('id','desc')->first();
                                 @endphp
                                 @isset($logo)
@@ -25,7 +42,7 @@
                                     <a href="{{route('home')}}" class="standard-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                                     <a href="{{route('home')}}" class="retina-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
                                 </div><!-- #logo end -->
-                                @endisset --}}
+                                @endisset
                                 {{-- <div class="header-row" style="background-image: url({{asset('assets/frontend/images/banner.jpg')}}); background-repeat: no-repeat; background-position: center center;">
                                     <div class="header-misc mb-4 mb-lg-0 d-none d-lg-flex">
 
@@ -149,6 +166,23 @@
                 @include('frontend_theme.corporate.front_layout.vertical.topbar')
                 <div class="" >
                     <div style="margin-left: {{$navbar->left_margin}}; margin-right: {{$navbar->right_margin}};" class=" header-row flex-column flex-lg-row justify-content-center justify-content-lg-start">
+
+                        @php
+                        $mytime = Carbon\Carbon::now();
+                        $today = date("Y/m/d");
+                        $to_day=date("d-F-Y",strtotime($today));
+                        @endphp
+                         <div id="logo">
+                            <p style="background: black; color: white; padding: 5px; margin-bottom: 0px; border-radius: 5%;">{{$to_day}}</p>
+                            <div class="tick_clock" style="background: black; color: white; padding: 5px; margin-left: 5px; border-radius: 5%;">
+                                <span id="hours">00</span>
+                                <span>:</span>
+                                <span id="minutes">00</span>
+                                <span>:</span>
+                                <span id="seconds">00</span>
+                                <span id="session">AM</span>
+                            </div>
+                         </div>
 
                         <!-- Logo
                         {{-- ============================================= -->
@@ -280,7 +314,7 @@
             @elseif ($navbar->navbar_style == 'menu2')
 
             @if ($navbar->container == 'container-sm')
-                <div class="container-sm">
+                <div class="container-sm" style="background: {{$page->container_color}};">
                 <div class="main-div">
                     <header id="header" class="full-header" style="background: {{$navbar->background_color}};">
                         @include('frontend_theme.corporate.front_layout.vertical.topbar')
@@ -288,17 +322,27 @@
                             <div class="">
                                 <div class="header-row" style="margin-left: {{$navbar->left_margin}}; margin-right: {{$navbar->right_margin}};">
 
+                                     @php
+                                    $mytime = Carbon\Carbon::now();
+                                    $today = date("Y/m/d");
+                                    $to_day=date("d-F-Y",strtotime($today));
+                                    @endphp
+                                     <div id="logo">
+                                        <p style="background: black; color: white; padding: 5px; margin-bottom: 0px; border-radius: 5%;">{{$to_day}}</p>
+                                        <div class="tick_clock" style="background: black; color: white; padding: 5px; margin-left: 5px; border-radius: 5%;">
+                                            <span id="hours">00</span>
+                                            <span>:</span>
+                                            <span id="minutes">00</span>
+                                            <span>:</span>
+                                            <span id="seconds">00</span>
+                                            <span id="session">AM</span>
+                                        </div>
+                                     </div>
+
+
                                     <!-- Logo
                                     ============================================= -->
-                                    {{-- @php
-                                    $logo  = \App\Models\Admin\Setting::where([['id',1]])->orderBy('id','desc')->first();
-                                    @endphp
-                                    @isset($logo)
-                                    <div id="logo">
-                                        <a href="{{route('home')}}" class="standard-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img  src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
-                                        <a href="{{route('home')}}" class="retina-logo" data-dark-logo="{{asset('uploads/settings/'.$logo->logo)}}"><img src="{{asset('uploads/settings/'.$logo->logo)}}" alt="Canvas Logo"></a>
-                                    </div><!-- #logo end -->
-                                    @endisset --}}
+                                   
 
                                     {{-- <div class="header-misc">
 
@@ -443,6 +487,23 @@
                 <div id="header-wrap" style="background: {{$navbar->background_color}};">
                     <div class="">
                         <div class="header-row" style="margin-left: {{$navbar->left_margin}}; margin-right: {{$navbar->right_margin}};">
+
+                            @php
+                            $mytime = Carbon\Carbon::now();
+                            $today = date("Y/m/d");
+                            $to_day=date("d-F-Y",strtotime($today));
+                            @endphp
+                            <div id="logo">
+                                <p style="background: black; color: white; padding: 5px; margin-bottom: 0px; border-radius: 5%;">{{$to_day}}</p>
+                                <div class="tick_clock" style="background: black; color: white; padding: 5px; margin-left: 5px; border-radius: 5%;">
+                                    <span id="hours">00</span>
+                                    <span>:</span>
+                                    <span id="minutes">00</span>
+                                    <span>:</span>
+                                    <span id="seconds">00</span>
+                                    <span id="session">AM</span>
+                                </div>
+                            </div>
 
                             <!-- Logo
                             ============================================= -->
@@ -611,3 +672,27 @@
 
 
 
+    <script type="text/javascript">
+        function displayTime(){
+        var dateTime = new Date();
+        var hrs = dateTime.getHours();
+        var min = dateTime.getMinutes();
+        var sec = dateTime.getSeconds();
+        var session = document.getElementById('session');
+
+        if(hrs >= 12){
+            session.innerHTML = 'PM';
+        }else{
+            session.innerHTML = 'AM';
+        }
+
+        if(hrs > 12){
+            hrs = hrs - 12;
+        }
+
+        document.getElementById('hours').innerHTML = hrs;
+        document.getElementById('minutes').innerHTML = min;
+        document.getElementById('seconds').innerHTML = sec;
+    }
+    setInterval(displayTime, 10);
+      </script>

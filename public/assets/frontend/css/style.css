@@ -3304,7 +3304,7 @@ html[xmlns] .slider-wrap {
 	}
 
 	.sticky-header #header-wrap {
-		position: fixed;
+		/* position: fixed; */
 		top: 0;
         left: 0;
 		/* left: 50;
@@ -3577,6 +3577,7 @@ body:not(.top-search-open) .top-search-parent #primary-menu-trigger {
 
 .svg-trigger {
 	width: 30px;
+	background: white;
 	height: 30px;
 	cursor: pointer;
 	-webkit-tap-highlight-color: transparent;
@@ -5727,7 +5728,7 @@ body:not(.stretched) .slider-parallax .slider-inner { left: auto; }
 /* Boxed Slider
 -----------------------------------------------------------------*/
 
-.boxed-slider { padding-top: 40px; }
+.boxed-slider { padding-top: 0px; }
 
 
 /* Swiper Slider
@@ -6844,10 +6845,10 @@ body:not(.device-touch) .grid-container {
             left: 40% !important;
             width: 60% !important;
         } */
-        #top-bar
-        {
-            display: none;
-        }
+        /*#top-bar*/
+        /*{*/
+        /*    display: none;*/
+        /*}*/
         .ttm-btn.ttm-btn-size-md {
             margin-left: 35%;
         }
@@ -6859,6 +6860,11 @@ body:not(.device-touch) .grid-container {
         {
             line-height: 1.8;
         }
+
+		#member_reg{
+			width: 100% !important;
+			margin-left: 0% !important;
+		}
 
 
     }

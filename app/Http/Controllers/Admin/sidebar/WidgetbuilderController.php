@@ -64,6 +64,7 @@ class WidgetbuilderController extends Controller
             'no_of_post' => $request->no_of_post,
             'type' => $request->type,
             'image' => $imagename,
+            'url' => $request->url,
             'body' => $request->body,
 
         ]);
@@ -143,6 +144,7 @@ class WidgetbuilderController extends Controller
             'no_of_post' => $request->no_of_post,
             'type' => $request->type,
             'image' => $imagename,
+            'url' => $request->url,
             'body' => $request->body,
         ]);
 

@@ -9,95 +9,13 @@
 
 @php
     $slider = \App\Models\Admin\Slide\Slider::where('status','=',true)->first();
-    $posts = \App\Models\blog\post::where('status','=',true)->take(8)->get();
+    $posts = \App\Models\blog\Post::where('status','=',true)->take(8)->get();
     $sidebars = \App\Models\Admin\Sidebar::where([['type','=','Left Side Bar']])->get();
     foreach($sidebars as $sidebar)
     {
         $widgets = $sidebar->widgets()->get();
     }
 @endphp
-
-<div class="row">
-    <div class="col-3" style="margin-top: 40px; background: #69F;">
-        <div class="sidebar">
-            @foreach ($widgets as $widget)
-            <div class="sidebar-widgets-wrap">
-                <h4 style="background: #A00000; color: #fff; padding: 5px;">
-                    Digital Content
-                </h4>
-                <p style="background: #fff;"><img alt="" src="{{asset('uploads/sidebarphoto/'.$widget->image)}}" style="height: 214px; width: 350px;" /></p>
-
-
-                    <h4>
-                        {{-- <a href="{{route('widget.details',$widget->id)}}"> --}}
-                            <a href="#">
-                            <u><span style="color: #008000;">বিস্তারিত</span></u>
-                        </a>
-                    </h4>
-            </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="col-6">
-        @isset($slider)
-        <section id="slider" class="slider-element boxed-slider">
-            <div class="container clearfix">
-                <div class="fslider" data-animation="fade">
-                    <div class="flexslider">
-                        <div class="slider-wrap">
-                            @foreach ($slider->slides as $mainslide)
-                            <div class="slide" data-thumb="{{asset('uploads/slide_image/'.$mainslide->slideimage)}}">
-                                <a href="#" class="d-block position-relative">
-                                    <img src="{{asset('uploads/slide_image/'.$mainslide->slideimage)}}" alt="Slide 2">
-                                    {{-- <div class="bg-overlay">
-                                        <div class="bg-overlay-content justify-content-start align-items-end">
-                                            <div class="h3 fw-light py-2 px-3 bg-light text-dark ms-3 mb-3 rounded">Responsive Ready Design</div>
-                                        </div>
-                                    </div> --}}
-                                </a>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        @endisset
-    </div>
-    <div class="col-3" style="margin-top: 40px;">
-        <div class="sidebar">
-            <div class="sidebar-widgets-wrap">
-                <h4 style="background: #A00000; color: #fff; padding: 5px;">
-                    Recent Events
-                </h4>
-                 @foreach ($posts as $post)
-                <div class="posts-sm row col-mb-30" id="post-list-sidebar">
-                    <div class="entry col-12">
-                        <div class="grid-inner row g-0">
-                            <div class="col-auto">
-                                <div class="entry-image">
-                                    <a href="#"><img src="{{asset('uploads/postphoto/'.$post->image)}}" alt="Image"></a>
-                                </div>
-                            </div>
-                            <div class="col ps-3">
-                                <div class="entry-title">
-                                    <h4><a href="#">{{$post->title}}</a></h4>
-                                </div>
-                                <div class="entry-meta">
-                                    <ul>
-                                        <li>{{ \Carbon\Carbon::parse($post->created_at)->isoFormat('Do MMM YYYY')}}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-</div>
 
 
         @if ($page->rightsidebar_id == 0 && $page->leftsidebar_id == 0)
@@ -110,6 +28,91 @@
         <div class="postcontent col-lg-6">
         @endif
 
+        <div class="row">
+    <div class="col-md-9">
+        @isset($slider)
+        <section id="slider" class=" slider-element swiper_wrapper min-vh-{{$slider->width}} min-vh-md-{{$slider->height}}" data-autoplay="7000" data-speed="650" data-loop="true">
+            <div class="slider-inner">
+
+                <div class="swiper-container swiper-parent">
+                    <div class="swiper-wrapper">
+                        @foreach ($slider->slides as $mainslide)
+                        <div class="swiper-slide dark">
+                            {{-- <div class="container">
+                                <div class="slider-caption slider-caption-center">
+                                    <h2 data-animate="fadeInUp">{{$mainslide->title}}</h2>
+                                    <p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200">{!!$mainslide->content!!}</p>
+                                </div>
+                            </div> --}}
+                            <div class="swiper-slide-bg" style="background-image: url('{{asset('uploads/slide_image/'.$mainslide->slideimage)}}');"></div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="slider-arrow-left"><i class="icon-angle-left"></i></div>
+                    <div class="slider-arrow-right"><i class="icon-angle-right"></i></div>
+                    <div class="slide-number"><div class="slide-number-current"></div><span>/</span><div class="slide-number-total"></div></div>
+                </div>
+
+            </div>
+        </section>
+        {{-- <section id="slider" class="slider-element boxed-slider">
+            <div class="container clearfix">
+                <div class="fslider" data-animation="fade">
+                    <div class="flexslider">
+                        <div class="slider-wrap">
+                            @foreach ($slider->slides as $mainslide)
+                            <div class="slide" data-thumb="{{asset('uploads/slide_image/'.$mainslide->slideimage)}}">
+                                <a href="#" class="d-block position-relative">
+                                    <img src="{{asset('uploads/slide_image/'.$mainslide->slideimage)}}" alt="Slide 2">
+                                    <div class="bg-overlay">
+                                        <div class="bg-overlay-content justify-content-start align-items-end">
+                                            <div class="h3 fw-light py-2 px-3 bg-light text-dark ms-3 mb-3 rounded">Responsive Ready Design</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> --}}
+        @endisset
+    </div>
+    <div class="col-md-3">
+        <div class="sidebar">
+            <div class="sidebar-widgets-wrap">
+                <h4 style="background: #A00000; color: #fff; padding: 5px;">
+                    Recent Events
+                </h4>
+                 @foreach ($posts as $post)
+                <div class="posts-sm row col-mb-30" id="post-list-sidebar">
+                    <div class="entry col-12">
+                        <div class="grid-inner row g-0">
+                            <div class="col-auto">
+                                <div class="entry-image">
+                                    <a href="{{route('blog.details',$post->slug)}}"><img src="{{asset('uploads/postphoto/'.$post->image)}}" alt="Image"></a>
+                                </div>
+                            </div>
+                            <div class="col ps-3">
+                                <div class="entry-title">
+                                    <h4><a href="{{route('blog.details',$post->slug)}}">{{$post->title}}</a></h4>
+                                </div>
+                                <div class="entry-meta">
+                                    <ul>
+                                        <li>{{ \Carbon\Carbon::parse($post->updated_at)->isoFormat('Do MMM YYYY')}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+</div>
 
         @foreach ($page->pagebuilders()->with('elements')->get() as $pagebuilder)
         @if ($pagebuilder->status == 1)
@@ -177,15 +180,15 @@
                                     </div>
                                     <div class="entry-meta">
                                         <ul>
-                                            <li><i class="icon-calendar3"></i> {{ \Carbon\Carbon::parse($blogpost->created_at)->isoFormat('Do MMM YYYY')}}</li>
-                                            <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li>
-                                            <li><a href="#"><i class="icon-camera-retro"></i></a></li>
+                                            <li><i class="icon-calendar3"></i> {{ \Carbon\Carbon::parse($blogpost->updated_at)->isoFormat('Do MMM YYYY')}}</li>
+                                            <!--<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li>-->
+                                            <!--<li><a href="#"><i class="icon-camera-retro"></i></a></li>-->
                                         </ul>
                                     </div>
                                     <div class="entry-content">
                                         {{-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod est tenetur in. Eligendi, deserunt, blanditiis est quisquam doloribus.</p> --}}
-                                        <p>{!!Str::limit($blogpost->desc, 70)!!}</p>
-                                        <a href="{{route('blog.details',$blogpost->slug)}}" class="more-link">Read More</a>
+                                        <!--<p>{!!Str::limit($blogpost->desc, 70)!!}</p>-->
+                                        <!--<a href="{{route('blog.details',$blogpost->slug)}}" class="more-link">Read More</a>-->
                                     </div>
                                 </div>
                         </div>
@@ -1014,8 +1017,10 @@
 
 
 
-@endsection()
+@endsection
 
 @section('scripts')
+
+
 
 @endsection

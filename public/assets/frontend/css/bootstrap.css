@@ -663,8 +663,8 @@ progress {
     max-width: 80%;
   }
   .container-sm{
-    /* max-width: 75%; */
-    max-width: 65%;
+    max-width: 75%;
+    /* max-width: 65%; */
   }
   .container-lg{
     max-width: 100%;
@@ -7007,7 +7007,7 @@ textarea.form-control-lg {
 }
 
 .min-vh-70 {
-    min-height: 70vh !important;
+    min-height: 50vh !important;
   }
 
 .flex-fill {

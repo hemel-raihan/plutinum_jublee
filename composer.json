@@ -18,6 +18,8 @@
         "laravel/ui": "3.3",
         "pusher/pusher-php-server": "^7.0",
         "rachidlaasri/laravel-installer": "^4.1",
+        "shurjopayv2/laravel8": "dev-master",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-analytics": "^3.11"
     },
     "require-dev": {

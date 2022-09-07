@@ -123,6 +123,7 @@ class CustompageController extends Controller
             'leftsidebar_id' => $request->leftsidebar_id,
             'rightsidebar_id' => $request->rightsidebar_id,
             'container' => $request->container,
+            'container_color' => $request->container_color,
             'left_margin' => $request->left_margin,
             'right_margin' => $request->right_margin,
         ]);
@@ -273,6 +274,7 @@ class CustompageController extends Controller
             'leftsidebar_id' => $request->leftsidebar_id,
             'rightsidebar_id' => $request->rightsidebar_id,
             'container' => $request->container,
+            'container_color' => $request->container_color,
             'left_margin' => $request->left_margin,
             'right_margin' => $request->right_margin,
         ]);

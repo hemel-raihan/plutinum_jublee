@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/1plusoverseas'),
+    'url' => env('APP_URL', 'http://plutinum.jubilee/plutinumjubilee'),
 
     'asset_url' => env('ASSET_URL', null),
     /*
@@ -66,7 +66,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE','UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -163,7 +163,8 @@ return [
         //Barryvdh\Elfinder\ElfinderServiceProvider::class,
         //UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+        shurjopayv2\ShurjopayLaravelPackage8\ShurjopayServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -236,6 +237,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         //'PDF' => ZanySoft\LaravelPDF\Facades\PDF::class,
         'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 
