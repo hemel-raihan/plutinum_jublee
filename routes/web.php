@@ -105,6 +105,9 @@ Route::get('members-name/{year}', 'MemberRegController@getName')->name('member.n
 
 Route::post('members-registration', 'MemberRegController@registration')->name('member.registration');
 
+Route::get('members-registration-search', 'MemberRegController@search')->name('member.registration.search');
+Route::post('members-registration-search', 'MemberRegController@registrationSearch')->name('member.registration.search');
+
 //Route::get('/shurjo-payment', 'App\Http\Controllers\PaymentGatewayController@index')->route('shurjo.payment');
 
 Route::post('payment-gateway','PaymentGatewayController@initiatePayment');

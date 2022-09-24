@@ -23,13 +23,13 @@
 
     <div class="container">
       <div class="header clearfix">
-        <nav>
+        {{-- <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="{{route('home')}}">Home</a></li>
             <li role="presentation"><a href="#">About</a></li>
             <li role="presentation"><a href="#">Contact</a></li>
           </ul>
-        </nav>
+        </nav> --}}
         <h3 class="text-muted">Shurjopay Integration</h3>
       </div>
 
@@ -41,9 +41,17 @@
         <form method="POST" action="{{url('/payment-gateway')}}">
             @csrf
             <input type="hidden" name="register_id" value="{{$register}}"/>
-            <div class="form-group text-center" style="margin-top: 10px;">
+            <p>{{$registered_member->name}}</p>
+
+            @if ($registered_member->payment_status == true)
+            <span class="btn btn-success">Payment Success</span>
+            @else
+            <span class="btn btn-danger">Payment Pending</span>
+              <div class="form-group text-center" style="margin-top: 10px;">
                 <input type="submit"  class = "btn btn-success" value="Pay Now">
-            </div>
+              </div>
+            @endif
+            
         </form> 
 
        

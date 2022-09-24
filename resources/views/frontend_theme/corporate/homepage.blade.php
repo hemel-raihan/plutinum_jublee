@@ -9,7 +9,7 @@
 
 @php
     $slider = \App\Models\Admin\Slide\Slider::where('status','=',true)->first();
-    $posts = \App\Models\blog\Post::where('status','=',true)->take(8)->get();
+    $posts = \App\Models\blog\Post::where('status','=',true)->orderBy('id','desc')->take(8)->get();
     $sidebars = \App\Models\Admin\Sidebar::where([['type','=','Left Side Bar']])->get();
     foreach($sidebars as $sidebar)
     {

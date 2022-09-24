@@ -402,9 +402,14 @@
                                     <!-- Primary Navigation
                                     ============================================= -->
                                     <nav class="primary-menu">
-
+                                        
                                         <ul class="menu-container">
-                                            {{-- <li class="menu-item"> --}}
+                                            <li class="menu-item">
+                                                <a class="menu-link" style="border: 1px solid#ff8; background: #f10606; color: {{$navbar->text_color}}; padding: 5px 10px;  border-radius: 5px;" href="members-registration"><div>রেজিষ্ট্রেশন</div></a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a class="menu-link" style="border: 1px solid#ff8; background: #f10606; color: {{$navbar->text_color}}; padding: 5px 10px;  border-radius: 5px;" href="members-registration-search"><div>পেমেন্ট স্ট্যাটাস</div></a>
+                                            </li>
                                             @isset($menuitems)
                                             @foreach ($menuitems as $menuitem)
                                             @if($menuitem->childs->isEmpty())

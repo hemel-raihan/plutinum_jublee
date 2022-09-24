@@ -32,7 +32,7 @@
                                 @endif
 
                                 <div class="form-group">
-                                    <label for="passingYear">Passing Year</label>
+                                    <label for="passingYear">পাশের সন (<span style='color: red;'>*</span>)</label>
                                     <select id="passingYear" name="passing_year" class="form-control">
                                     <option selected>Choose...</option>
                                     @foreach ($members as $key)
@@ -42,26 +42,70 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="memberName">Select Your Name</label>
-                                    <select id="memberName" name="member_name" class="form-control">
+                                    <label for="memberName">আপনার নাম নির্বাচন করুন(<span style='color: red;'>*</span>)</label>
+                                    <select id="memberName" name="member_name" class="form-control @error('member_name') is-invalid @enderror">
+                                    @error('member_name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="member_photo">Upload your photo: </label>
-                                    <input type="file" id="member_photo" name="member_photo" class="form-control" />
+                                    <label for="member_photo">আপনার ছবি আপলোড করুন (<span style='color: red;'>*</span>) </label>
+                                    <input type="file" value="{{ old('member_photo') }}" id="member_photo" name="member_photo" class="form-control @error('member_photo') is-invalid @enderror" />
+                                    @error('member_photo')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="member_phone">Phone Number: </label>
-                                    <input type="number" id="member_phone" name="member_phone" class="form-control" />
+                                    <label for="member_phone">ফোন নম্বর (<span style='color: red;'>*</span>) </label>
+                                    <input type="number" value="{{ old('phone') }}" id="member_phone" name="phone" class="form-control @error('phone') is-invalid @enderror" />
+                                    @error('phone')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="member_email">ইমেইল </label>
+                                    <input type="email" value="{{ old('email') }}" id="member_email" name="email" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="member_occupation">আবেদনকারীর পেশা (<span style='color: red;'>*</span>) </label>
+                                    <input type="text" value="{{ old('occupation') }}" id="member_occupation" name="occupation" class="form-control @error('occupation') is-invalid @enderror" />
+                                    @error('occupation')
+                                      <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="member_workplace">বর্তমান কর্মস্থলঃ (<span style='color: red;'>*</span>) </label>
+                                    <input type="text" value="{{ old('present_workplace') }}" id="member_workplace" name="present_workplace" class="form-control @error('present_workplace') is-invalid @enderror" />
+                                    @error('present_workplace')
+                                      <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="member_address">বর্তমান ঠিকানাঃ (<span style='color: red;'>*</span>) </label>
+                                    <input type="text" value="{{ old('present_address') }}" id="member_address" name="present_address" class="form-control @error('present_address') is-invalid @enderror" />
+                                    @error('present_address')
+                                      <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="member_per_address">স্থায়ী ঠিকানাঃ </label>
+                                    <input type="text" value="{{ old('permanent_address') }}" id="member_per_address" name="permanent_address" class="form-control" />
                                 </div>
 
                                 <p style="text-align: center">for aditional extra guest</p>
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="number" id="guest_number" name="guest_number" placeholder="Add guest?" class="form-control"/>
+                                        <input type="number" min="0" oninput="this.value = 
+                                        !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" id="guest_number" name="guest_number" placeholder="Add guest?" class="form-control"/>
                                     </div>
                                     {{-- <div class="col-md-6">
                                         <a id="add_guest" class="btn btn-primary ">add guest</a>
@@ -134,7 +178,7 @@
                 $("#memberName").empty();
                 $("#memberName").append('<option>Select</option>');
                 $.each(res.memberName,function(key,value){
-                    $("#memberName").append('<option value="'+value.id+'">'+value.name+' - ('+value.fathers_name+')</option>');
+                    $("#memberName").append('<option value="'+value.id+'">'+value.name+ ' --> father('+value.fathers_name+')</option>');
                 });
            
             }else{
@@ -176,15 +220,15 @@ for (var i=0, n=guest_number.val(); i<n;i++)
         $('#dd_handle').append(`<div style="border-style: solid; margin-bottom: 20px; padding: 5px;">
                                     <p style="text-align: center;">add no `+(i+1)+` guest</p>
                                     <div class="form-group">
-                                        <label for="memberName">Guest Name</label>
+                                        <label for="memberName">গেস্ট নাম</label>
                                         <input type="text" name="guest_name[]" class="form-control" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="memberName">Guest Age</label>
+                                        <label for="memberName">গেস্ট বয়স</label>
                                         <input type="number" name="guest_age[]" class="form-control" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="memberName">Guest Gender</label>
+                                        <label for="memberName">গেস্ট জেন্ডার</label>
                                         <select  name="guest_gender[]" class="form-control">
                                             <option value="">Select Gender</option>
                                             <option value="Male">Male</option>
@@ -192,7 +236,7 @@ for (var i=0, n=guest_number.val(); i<n;i++)
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="memberName">Guest Relation</label>
+                                        <label for="memberName">গেস্ট সম্পর্ক</label>
                                         <select  name="guest_relation[]" class="form-control">
                                             <option value="">Select Relation</option>
                                             <option value="Father">Father</option>
@@ -204,7 +248,7 @@ for (var i=0, n=guest_number.val(); i<n;i++)
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="memberName">Guest Photo</label>
+                                        <label for="memberName">গেস্ট ছবি</label>
                                         <input type="file" name="guest_photo[]" class="form-control" />
                                     </div>
                                </div>

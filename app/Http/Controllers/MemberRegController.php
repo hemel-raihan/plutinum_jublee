@@ -30,8 +30,11 @@ class MemberRegController extends Controller
         $this->validate($request,[
             'member_name' => 'required',
             'member_photo' => 'required',
+            'occupation' => 'required',
+            'present_workplace' => 'required',
+            'present_address' => 'required',
             'passing_year' => 'required',
-            'member_phone' => 'required',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:member_registrations',
             'guest_name.*' => 'required',
             'guest_gender.*' => 'required',
             'guest_relation.*' => 'required'
@@ -72,7 +75,12 @@ class MemberRegController extends Controller
             'name' => $member_name->name,
             'passing_year' => $request->passing_year,
             'photo' => $imagename,
-            'phone' => $request->member_phone,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'occupation' => $request->occupation,
+            'present_workplace' => $request->present_workplace,
+            'present_address' => $request->present_address,
+            'permanent_address' => $request->permanent_address,
             'total_fee' => $total_fee,
             'payment_status' => 0,
             'member_id' => $request->member_name
@@ -81,18 +89,24 @@ class MemberRegController extends Controller
         $guest = array();
 
         for($i = 0; $i < $request->guest_number; $i++){
-            $guest_image = $request->guest_photo[$i];
-            $guest_slug = Str::slug($request->guest_name[$i]);
-
-            if(isset($guest_image))
-            {
-                $currentDate = Carbon::now()->toDateString();
-                $guest_imagename = $guest_slug.'-'.$currentDate.'-'.uniqid().'.'.$guest_image->getClientOriginalExtension();
-
-                $guestphotoPath = public_path('uploads/postphoto');
-                $img                     =       Image::make($image->path());
-                $img->save($guestphotoPath.'/'.$guest_imagename);
-
+            if($request->guest_photo){
+                $guest_image = $request->guest_photo[$i];
+                $guest_slug = Str::slug($request->guest_name[$i]);
+    
+                if(isset($guest_image))
+                {
+                    $currentDate = Carbon::now()->toDateString();
+                    $guest_imagename = $guest_slug.'-'.$currentDate.'-'.uniqid().'.'.$guest_image->getClientOriginalExtension();
+    
+                    $guestphotoPath = public_path('uploads/postphoto');
+                    $img                     =       Image::make($image->path());
+                    $img->save($guestphotoPath.'/'.$guest_imagename);
+    
+                }
+                else
+                {
+                    $guest_imagename = null;
+                }
             }
             else
             {
@@ -111,7 +125,29 @@ class MemberRegController extends Controller
 
         DB::table('guests')->insert($guest);
 
+        $registered_member = DB::table('member_registrations')->where('id',$register)->first();
+
+        return view('frontend_theme.corporate.shurjopayment',compact('register','registered_member'));
         notify()->success('You have registered successfully, please pay now!!');
-        return view('frontend_theme.corporate.shurjopayment',compact('register'));
+    }
+
+    public function search()
+    {
+        return view('frontend_theme.corporate.due_payment');
+    }
+
+    public function registrationSearch(Request $request)
+    {
+        $this->validate($request,[
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+        ]);
+
+        $registered_member = DB::table('member_registrations')->where('phone',$request->phone)->first();
+        if(!$registered_member){
+            notify()->error('Not registered with this number yet..!!');
+            return redirect()->back();
+        }
+        $register = $registered_member->id;
+        return view('frontend_theme.corporate.shurjopayment',compact('register','registered_member'));
     }
 }
