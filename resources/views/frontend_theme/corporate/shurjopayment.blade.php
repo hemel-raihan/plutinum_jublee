@@ -10,6 +10,7 @@
     <title>Shurjopay Integration (Laravel)</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/">
+    <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
 
     <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/3.3/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -61,11 +62,12 @@
      
 
       <footer class="footer">
-        <p>&copy; 2022 Mominur Rahman</p>
+        <p>&copy; 2022 Datahost It</p>
       </footer>
 
     </div> 
-
+    <script src="{{ asset('js/iziToast.js') }}"></script>
+    @include('vendor.lara-izitoast.toast')
     <script src="https://getbootstrap.com/docs/3.3/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>

@@ -127,8 +127,8 @@ class MemberRegController extends Controller
 
         $registered_member = DB::table('member_registrations')->where('id',$register)->first();
 
-        return view('frontend_theme.corporate.shurjopayment',compact('register','registered_member'));
         notify()->success('You have registered successfully, please pay now!!');
+        return view('frontend_theme.corporate.shurjopayment',compact('register','registered_member'));
     }
 
     public function search()

@@ -79,7 +79,12 @@
 
 									</tr>
                                 @endforeach
-
+                                    <tr style="background: pink">
+                                        <td colspan="3" style="text-align: right">total payable:</td>
+                                        <td>{{$total_payable}}</td>
+                                        <td style="text-align: right">total paid:</td>
+                                        <td colspan="2">{{$total_paid}}</td>
+                                    </tr>
 								</tbody>
 							</table>
                             {{ $registrations->links('vendor.pagination.custom') }}

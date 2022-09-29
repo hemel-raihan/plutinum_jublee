@@ -22,8 +22,8 @@ class PaymentGatewayController extends Controller
             'client_ip' => "127.0.0.1", 
             'customer_name' => $register_info->name, 
             'customer_phone' => (string) $register_info->phone, 
-            'email' => "", 
-            'customer_address' => "Bangladesh", 
+            'email' => $register_info->email, 
+            'customer_address' => $register_info->present_address, 
             'customer_city' => "Dhaka", 
             'customer_state' => "", 
             'customer_postcode' => "", 
@@ -37,13 +37,23 @@ class PaymentGatewayController extends Controller
 
     public function verifyPayment(Request $request)
     {
-       
         $order_id = $request->order_id;
         $shurjopay_service = new ShurjopayController();
         $data = $shurjopay_service->verify($order_id);
-        dd($data);
-        //return view('success_page');
 
+        $payment_return = json_decode($data);
+        $length = count($payment_return);
+        $payment_data = $payment_return[($length-1)];
+
+        if($payment_data->sp_code == 1000){
+            $voucherUpdated = DB::table('member_registrations')
+                                ->where('id', $payment_data->customer_order_id)
+                                ->update([
+                                          'payment_status' => 1,
+                                        ]);
+        }
+        
+        return view('frontend_theme.corporate.success_page',compact('payment_data'));
     }
 
 

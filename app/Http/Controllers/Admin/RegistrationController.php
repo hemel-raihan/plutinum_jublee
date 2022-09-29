@@ -14,8 +14,10 @@ class RegistrationController extends Controller
     public function index()
     {
         $registrations = MemberRegistration::with('guests')->orderBy('id', 'DESC')->paginate(10);
+        $total_payable = MemberRegistration::sum('total_fee');
+        $total_paid = MemberRegistration::where('payment_status',1)->sum('total_fee');
 
-        return view('backend.admin.registration.index',compact('registrations'));
+        return view('backend.admin.registration.index',compact('registrations','total_payable','total_paid'));
     }
 
     public function invitations($id)
